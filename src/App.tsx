@@ -1,7 +1,12 @@
 import React from 'react';
+import AddNoticeForm from './components/AddNoticeForm';
 
 const App: React.FC = () => {
-	return <div>lol</div>;
+	return (
+		<>
+			<AddNoticeForm />
+		</>
+	);
 };
 
 export default App;
