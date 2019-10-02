@@ -1,14 +1,9 @@
 import React from 'react';
 import * as Yup from 'yup';
 import TextField from './TextField';
-
-import { Formik, FormikActions, Form, Field } from 'formik';
-
-export type AddNoticeFormValues = {
-	title: string;
-	noticeText: string;
-	price: string;
-};
+import TextArea from './TextArea';
+import { Formik, Form, Field } from 'formik';
+import { AddNoticeFormValues } from '../types';
 
 const validationSchema = Yup.object().shape({
 	title: Yup.string()
@@ -33,16 +28,12 @@ const initialValues: AddNoticeFormValues = {
 const AddNoticeForm: React.FC = () => {
 	return (
 		<>
-			<div>Notice form</div>
 			<Formik
 				validateOnChange={false}
 				validateOnBlur={false}
 				initialValues={initialValues}
 				validationSchema={validationSchema}
-				onSubmit={(
-					values: AddNoticeFormValues,
-					actions: FormikActions<AddNoticeFormValues>
-				) => {
+				onSubmit={(values, actions) => {
 					actions.setSubmitting(true);
 					console.log({ values });
 					setTimeout(() => {
@@ -57,9 +48,14 @@ const AddNoticeForm: React.FC = () => {
 						<Field
 							name='noticeText'
 							label='Ilmoitusteksti'
+							component={TextArea}
+						></Field>
+						<Field
+							name='price'
+							euro={true}
+							label='Hinta'
 							component={TextField}
 						/>
-						<Field name='price' label='Hinta' component={TextField} />
 						<button type='submit' disabled={isSubmitting}>
 							Lähetä
 						</button>

@@ -1,5 +1,6 @@
 import React from 'react';
 import { FieldProps } from 'formik';
+
 import styled from 'styled-components';
 
 const Label = styled.label`
@@ -7,11 +8,13 @@ const Label = styled.label`
 	display: block;
 `;
 
-const FormInput = styled.input`
+const FormInputTextArea = styled.textarea`
 	border-radius: 3px;
 	border: 1px solid #eee;
 	padding: 5px 5px;
 	margin-bottom: 5px;
+	width: 300px;
+	height: 150px;
 `;
 
 const InputError = styled.p`
@@ -21,33 +24,27 @@ const InputError = styled.p`
 
 type OwnProps = {
 	label: string;
-	type: string;
-	euro: boolean;
 };
 
 type TextFieldValueProps = FieldProps & OwnProps;
 
-const TextField: React.FC<TextFieldValueProps> = ({
+const TextArea: React.FC<TextFieldValueProps> = ({
 	field,
 	label,
-	type = 'text',
-	form: { errors },
-	euro
+	form: { errors }
 }) => (
 	<div>
-		<Label htmlFor={field.name}>{label}</Label>
-		<FormInput
+		<Label htmlFor={field.name}> {label}</Label>
+		<FormInputTextArea
 			style={
 				errors[field.name] ? { borderColor: 'red' } : { borderColor: '#eee' }
 			}
-			type={type}
 			{...field}
 		/>
-		{euro ? <span>€</span> : null}
 		{[field.name] && errors[field.name] && (
 			<InputError>{errors[field.name]}</InputError>
 		)}
 	</div>
 );
 
-export default TextField;
+export default TextArea;
