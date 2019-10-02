@@ -1,5 +1,5 @@
-export type AddNoticeFormValues = {
-	title: string;
-	noticeText: string;
+export type Annoucement = {
+	headline: string;
+	description: string;
 	price: string;
 };
