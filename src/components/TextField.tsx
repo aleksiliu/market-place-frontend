@@ -15,7 +15,7 @@ const FormInput = styled.input`
 `;
 
 const InputError = styled.p`
-	color: ${props => props.theme.color};
+	color: ${props => props.theme.color.red};
 	margin: 0;
 `;
 

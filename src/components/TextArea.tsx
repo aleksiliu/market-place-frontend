@@ -10,7 +10,7 @@ const Label = styled.label`
 
 const FormInputTextArea = styled.textarea`
 	border-radius: 3px;
-	border: 1px solid #eee;
+	border: 1px solid ${props => props.theme.color.red};
 	padding: 5px 5px;
 	margin-bottom: 5px;
 	width: 300px;
@@ -18,7 +18,7 @@ const FormInputTextArea = styled.textarea`
 `;
 
 const InputError = styled.p`
-	color: red;
+	color: ${props => props.theme.color.red};
 	margin: 0;
 `;
 

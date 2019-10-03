@@ -4,7 +4,8 @@ import { Annoucement } from '../types';
 
 const AnnoucementCard = styled.div`
 	border-radius: 3px;
-	border: 1px solid #eee;
+	background-color: #fff;
+	border: 1px solid ${props => props.theme.color.gray};
 	padding: 16px;
 	display: inline-block;
 `;

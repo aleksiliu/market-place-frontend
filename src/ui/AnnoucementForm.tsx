@@ -1,7 +1,7 @@
 import React from 'react';
 import * as Yup from 'yup';
-import TextField from './TextField';
-import TextArea from './TextArea';
+import TextField from '../components/TextField';
+import TextArea from '../components/TextArea';
 import { Formik, Form, Field } from 'formik';
 import { Annoucement } from '../types';
 
