@@ -2,6 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import Container from '../components/Container';
 import Button from '../components/Button';
+import { Link } from 'react-router-dom';
 
 const HeaderContainer = styled.header`
 	background-color: white;
@@ -20,8 +21,13 @@ const Header: React.FC = () => (
 	<HeaderContainer>
 		<Container>
 			<Lol>
-				<h1>Market place</h1>
-				<Button>Sign in</Button>
+				<Link to='/'>
+					<h1>Market place</h1>
+				</Link>
+				<div>
+					<a>Register</a>
+					<Button>Sign in</Button>
+				</div>
 			</Lol>
 		</Container>
 	</HeaderContainer>

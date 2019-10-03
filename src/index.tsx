@@ -2,6 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import { ThemeProvider } from 'styled-components';
+import { BrowserRouter as Router } from 'react-router-dom';
 
 const theme = {
 	color: {
@@ -14,7 +15,9 @@ const theme = {
 
 ReactDOM.render(
 	<ThemeProvider theme={theme}>
-		<App />
+		<Router>
+			<App />
+		</Router>
 	</ThemeProvider>,
 	document.getElementById('root')
 );
