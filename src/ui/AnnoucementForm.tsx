@@ -4,6 +4,7 @@ import TextField from '../components/TextField';
 import TextArea from '../components/TextArea';
 import { Formik, Form, Field } from 'formik';
 import { Annoucement } from '../types';
+import { RouteComponentProps } from 'react-router-dom';
 
 const validationSchema = Yup.object().shape({
 	headline: Yup.string()
@@ -25,7 +26,7 @@ const initialValues: Annoucement = {
 	price: ''
 };
 
-const AnnoucementForm: React.FC = () => (
+const AnnoucementForm: React.FC<RouteComponentProps> = ({ history }) => (
 	<>
 		<Formik
 			validateOnChange={false}
@@ -37,6 +38,7 @@ const AnnoucementForm: React.FC = () => (
 				console.log({ values });
 				setTimeout(() => {
 					alert(JSON.stringify(values, null, 2));
+					history.push;
 					actions.resetForm();
 				}, 1000);
 			}}
