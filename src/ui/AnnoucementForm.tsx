@@ -38,7 +38,7 @@ const AnnoucementForm: React.FC<RouteComponentProps> = ({ history }) => (
 				console.log({ values });
 				setTimeout(() => {
 					alert(JSON.stringify(values, null, 2));
-					history.push;
+					history.push(`/annoucements`);
 					actions.resetForm();
 				}, 1000);
 			}}

@@ -22,7 +22,7 @@ const Header: React.FC = () => (
 		<Container>
 			<Lol>
 				<Link to='/'>
-					<h1>Market place</h1>
+					<h1>Marketplace</h1>
 				</Link>
 				<div>
 					<a>Register</a>

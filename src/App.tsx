@@ -5,7 +5,8 @@ import Header from './ui/Header';
 import Frontpage from './ui/Frontpage';
 import { createGlobalStyle } from 'styled-components';
 import Container from './components/Container';
-import { Route } from 'react-router-dom';
+import { Route, Switch } from 'react-router-dom';
+import NotFoundPage from './ui/NotFoundPage';
 
 const GlobalStyle = createGlobalStyle`
 * 	{
@@ -56,12 +57,15 @@ const App: React.FC = () => {
 			<GlobalStyle />
 			<Header />
 			<Container>
-				<Route exact path='/' component={Frontpage} />
-				<Route path='/new-annoucement' component={AnnoucementForm} />
-				<Route
-					path='/annoucements'
-					render={() => <AnnoucementList annoucements={ANNOUCEMENTS} />}
-				/>
+				<Switch>
+					<Route exact path='/' component={Frontpage} />
+					<Route path='/new-annoucement' component={AnnoucementForm} />
+					<Route
+						path='/annoucements'
+						render={() => <AnnoucementList annoucements={ANNOUCEMENTS} />}
+					/>
+					<Route component={NotFoundPage} />
+				</Switch>
 			</Container>
 		</>
 	);
