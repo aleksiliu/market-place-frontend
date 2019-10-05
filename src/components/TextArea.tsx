@@ -1,6 +1,6 @@
 import React from 'react';
 import { FieldProps } from 'formik';
-
+import { color } from '../styles';
 import styled from 'styled-components';
 
 const Label = styled.label`
@@ -10,7 +10,7 @@ const Label = styled.label`
 
 const FormInputTextArea = styled.textarea`
 	border-radius: 3px;
-	border: 1px solid ${props => props.theme.color.red};
+	border: 1px solid ${color.accent.error};
 	padding: 5px 5px;
 	margin-bottom: 5px;
 	width: 300px;
@@ -18,7 +18,7 @@ const FormInputTextArea = styled.textarea`
 `;
 
 const InputError = styled.p`
-	color: ${props => props.theme.color.red};
+	color: ${color.accent.error};
 	margin: 0;
 `;
 

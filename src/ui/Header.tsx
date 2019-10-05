@@ -1,13 +1,14 @@
 import React from 'react';
 import styled from 'styled-components';
 import Container from '../components/Container';
-import Button from '../components/Button';
+import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
+import { space } from '../styles';
 
 const HeaderContainer = styled.header`
 	background-color: white;
-	padding: 16px 0;
-	margin-bottom: 16px;
+	padding: ${space.m}px 0;
+	margin-bottom: ${space.m}px;
 `;
 
 const Lol = styled.div`
@@ -26,7 +27,7 @@ const Header: React.FC = () => (
 				</Link>
 				<div>
 					<a>Register</a>
-					<Button>Sign in</Button>
+					<Button onClick={() => alert('asdd')}>Sign in</Button>
 				</div>
 			</Lol>
 		</Container>

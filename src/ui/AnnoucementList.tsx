@@ -1,12 +1,13 @@
 import React from 'react';
 import styled from 'styled-components';
 import { Annoucement } from '../types';
+import { space } from '../styles';
 
 const AnnoucementCard = styled.div`
 	border-radius: 3px;
 	background-color: #fff;
-	border: 1px solid ${props => props.theme.color.gray};
-	padding: 16px;
+
+	padding: ${space.l}px;
 	display: inline-block;
 `;
 

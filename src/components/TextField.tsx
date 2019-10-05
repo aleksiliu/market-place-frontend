@@ -1,6 +1,7 @@
 import React from 'react';
 import { FieldProps } from 'formik';
 import styled from 'styled-components';
+import { color } from '../styles';
 
 const Label = styled.label`
 	color: black;
@@ -15,7 +16,7 @@ const FormInput = styled.input`
 `;
 
 const InputError = styled.p`
-	color: ${props => props.theme.color.red};
+	color: ${color.accent.error};
 	margin: 0;
 `;
 
