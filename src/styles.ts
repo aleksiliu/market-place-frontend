@@ -12,7 +12,7 @@ export const color = {
 };
 
 export const space = {
-	xxs: 2,
+	xxs: 3,
 	xs: 4,
 	s: 8,
 	m: 16,

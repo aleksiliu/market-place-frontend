@@ -1,11 +1,10 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
-import { Annoucement } from '../types';
 import { space } from '../styles';
 import { API } from 'aws-amplify';
 
 const AnnoucementCard = styled.div`
-	border-radius: 3px;
+	border-radius: ${space.xxs}px;
 	background-color: #fff;
 	padding: ${space.l}px;
 `;
@@ -21,55 +20,72 @@ const AnnoucementContainer = styled.div`
 	}
 `;
 
-type AnnoucementProps = {
-	annoucements: Annoucement[];
+type Annoucement = {
+	announcementId: string;
+	createdAt: number;
+	description: string;
+	headline: string;
+	price: string;
+	storeName: string;
 };
 
-type State = {
-	status: 'loading' | 'success' | 'error' | '';
+type ServiceLoading = {
+	status: 'loading';
+};
+type ServiceLoaded<T> = {
+	status: 'success';
+	data: Annoucement[];
+};
+type ServiceError = {
+	status: 'error';
+	error: Error;
+};
+
+type Service<T> = ServiceLoading | ServiceLoaded<T> | ServiceError;
+
+type Annoucements = {
 	data: Annoucement[];
 };
 
-const AnnoucementList: React.FC<AnnoucementProps> = () => {
-	const [annoucements, setAnnoucements] = useState<State>({
-		status: '',
-		data: []
+const AnnoucementList: React.FC = () => {
+	const [annoucements, setAnnoucements] = useState<Service<Annoucements>>({
+		status: 'loading'
 	});
 
 	useEffect(() => {
-		setAnnoucements({ status: 'loading', data: [] });
+		setAnnoucements({ status: 'loading' });
 		const fetchData = async () => {
 			try {
 				let myInit = {
 					headers: {}
 				};
 				const result = await API.get(
-					'annoucements',
+					'announcements',
 					'/getAnnouncements',
 					myInit
 				);
 				setAnnoucements({ status: 'success', data: result });
 			} catch (error) {
-				console.log(error);
-				setAnnoucements({ status: 'error', data: [] });
+				setAnnoucements({ status: 'error', error });
 			}
 		};
 		fetchData();
 	}, []);
 
-	console.log(annoucements);
 	return (
 		<AnnoucementContainer>
 			{annoucements.status === 'error' && <p>Network error!</p>}
 			{annoucements.status === 'loading' && <p>Loading...</p>}
 			{annoucements.status === 'success' &&
-				annoucements.data.map(annoucement => (
-					<AnnoucementCard key={annoucement.headline}>
-						<h2>{annoucement.headline}</h2>
-						<p>{annoucement.description}</p>
-						<span>{annoucement.price}€</span>
-					</AnnoucementCard>
-				))}
+				annoucements.data
+					.filter(annoucement => annoucement.headline)
+					.map(annoucement => (
+						<AnnoucementCard key={annoucement.announcementId}>
+							<h2>{annoucement.headline}</h2>
+							<p>{annoucement.description}</p>
+							<span>{annoucement.price}€</span>
+						</AnnoucementCard>
+					))}
 		</AnnoucementContainer>
 	);
 };
