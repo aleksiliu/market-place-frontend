@@ -5,6 +5,7 @@ import TextArea from '../components/TextArea';
 import { Formik, Form, Field } from 'formik';
 import { Annoucement } from '../types';
 import { RouteComponentProps } from 'react-router-dom';
+import { Button } from '../components/Button';
 
 const validationSchema = Yup.object().shape({
 	headline: Yup.string()
@@ -52,9 +53,9 @@ const AnnoucementForm: React.FC<RouteComponentProps> = ({ history }) => (
 						component={TextArea}
 					></Field>
 					<Field name='price' euro={true} label='Price' component={TextField} />
-					<button type='submit' disabled={isSubmitting}>
+					<Button type='submit' disabled={isSubmitting}>
 						Send
-					</button>
+					</Button>
 				</Form>
 			)}
 		</Formik>

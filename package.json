@@ -9,6 +9,7 @@
     "@types/react-dom": "16.9.1",
     "@types/styled-components": "^4.1.19",
     "@types/yup": "^0.26.24",
+    "aws-amplify": "^1.1.40",
     "formik": "^1.5.8",
     "react": "^16.10.1",
     "react-dom": "^16.10.1",

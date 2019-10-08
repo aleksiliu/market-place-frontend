@@ -3,7 +3,8 @@ import { color, space, typography } from '../styles';
 
 export const Button = styled.button`
 	font-size: ${typography.size.s3}px;
-	outline: 0;
+	border: none;
+	outline: none;
 	display: inline-block;
 	border-radius: ${space.xl}px;
 	padding: ${space.m}px ${space.l}px;

@@ -8,34 +8,6 @@ import Container from './components/Container';
 import { Route, Switch } from 'react-router-dom';
 import NotFoundPage from './ui/NotFoundPage';
 
-const ANNOUCEMENTS = [
-	{
-		headline: 'Pekan nutsit',
-		description: 'Helppo hoitoset',
-		price: '22'
-	},
-	{
-		headline: 'Pekan nutsit',
-		description: 'Helppo hoitoset',
-		price: '22'
-	},
-	{
-		headline: 'Pekan nutsit',
-		description: 'Helppo hoitoset',
-		price: '22'
-	},
-	{
-		headline: 'Pekan nutsit',
-		description: 'Helppo hoitoset',
-		price: '22'
-	},
-	{
-		headline: 'Pekan nutsit',
-		description: 'Helppo hoitoset',
-		price: '22'
-	}
-];
-
 const App: React.FC = () => {
 	return (
 		<>
@@ -45,10 +17,7 @@ const App: React.FC = () => {
 				<Switch>
 					<Route exact path='/' component={Frontpage} />
 					<Route path='/new-annoucement' component={AnnoucementForm} />
-					<Route
-						path='/annoucements'
-						render={() => <AnnoucementList annoucements={ANNOUCEMENTS} />}
-					/>
+					<Route path='/annoucements' component={AnnoucementList} />
 					<Route component={NotFoundPage} />
 				</Switch>
 			</Container>
