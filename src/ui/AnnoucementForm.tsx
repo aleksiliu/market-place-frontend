@@ -6,6 +6,7 @@ import { Formik, Form, Field } from 'formik';
 import { Annoucement } from '../types';
 import { RouteComponentProps } from 'react-router-dom';
 import { Button } from '../components/Button';
+import { API } from 'aws-amplify';
 
 const validationSchema = Yup.object().shape({
 	headline: Yup.string()
@@ -36,12 +37,22 @@ const AnnoucementForm: React.FC<RouteComponentProps> = ({ history }) => (
 			validationSchema={validationSchema}
 			onSubmit={(values, actions) => {
 				actions.setSubmitting(true);
-				console.log({ values });
-				setTimeout(() => {
-					alert(JSON.stringify(values, null, 2));
-					history.push(`/annoucements`);
-					actions.resetForm();
-				}, 1000);
+
+				const postData = async () => {
+					try {
+						let myInit = {
+							body: values
+						};
+						await API.post('announcements', '/createAnnouncement', myInit);
+						actions.setSubmitting(false);
+						actions.resetForm();
+						history.push(`/annoucements`);
+					} catch (error) {
+						console.log(error);
+						actions.setSubmitting(false);
+					}
+				};
+				postData();
 			}}
 		>
 			{({ isSubmitting }) => (

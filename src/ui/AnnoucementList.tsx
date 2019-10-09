@@ -59,7 +59,7 @@ const AnnoucementList: React.FC = () => {
 				let myInit = {
 					headers: {}
 				};
-				const result = await API.get(
+				const result: Annoucement[] = await API.get(
 					'announcements',
 					'/getAnnouncements',
 					myInit
@@ -71,6 +71,8 @@ const AnnoucementList: React.FC = () => {
 		};
 		fetchData();
 	}, []);
+
+	console.log(annoucements);
 
 	return (
 		<AnnoucementContainer>

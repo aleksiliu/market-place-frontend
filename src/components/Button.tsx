@@ -10,6 +10,7 @@ export const Button = styled.button`
 	padding: ${space.m}px ${space.l}px;
 	background: ${color.primary};
 	color: #fff;
+	opacity: ${props => (props.disabled ? 0.6 : 1)};
 	text-decoration: none;
 	box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11), 0 1px 3px rgba(0, 0, 0, 0.08);
 	transition: all 0.25s;
@@ -20,22 +21,6 @@ export const Button = styled.button`
 		filter: brightness(105%);
 	}
 `;
-
-/* ${props =>
-		props.isDisabled &&
-		`
-      cursor: not-allowed !important;
-      opacity: 0.5;
-      
-    `}
-
-	${props =>
-		props.isLoading &&
-		`
-      cursor: progress !important;
-      opacity: 0.7;
-      
-    `} */
 
 // type Props = {
 // 	isDisabled?: string;
