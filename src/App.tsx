@@ -1,6 +1,6 @@
 import React from 'react';
-import AnnoucementForm from './ui/AnnoucementForm';
-import AnnoucementList from './ui/AnnoucementList';
+import AnnouncementForm from './ui/AnnouncementForm';
+import AnnouncementList from './ui/AnnouncementList';
 import Header from './ui/Header';
 import Frontpage from './ui/Frontpage';
 import { GlobalStyle } from './global';
@@ -17,8 +17,8 @@ const App: React.FC = () => {
 			<Container>
 				<Switch>
 					<Route exact path='/' component={Frontpage} />
-					<Route path='/new-annoucement' component={AnnoucementForm} />
-					<Route path='/annoucements' component={AnnoucementList} />
+					<Route path='/new-announcement' component={AnnouncementForm} />
+					<Route path='/announcements' component={AnnouncementList} />
 					<Route path='/:announcementId' component={AnnouncementPage}></Route>
 					<Route component={NotFoundPage} />
 				</Switch>

@@ -6,10 +6,10 @@ const Frontpage: React.FC = props => (
 		<p>Welcome to market place!</p>
 		<ul>
 			<li>
-				<Link to='/new-annoucement'>Make new annoucement</Link>
+				<Link to='/new-announcement'>Make new annoucement</Link>
 			</li>
 			<li>
-				<Link to='/annoucements'>Annoucements</Link>
+				<Link to='/announcements'>Annoucements</Link>
 			</li>
 		</ul>
 	</div>

@@ -3,7 +3,7 @@ import * as Yup from 'yup';
 import TextField from '../components/TextField';
 import TextArea from '../components/TextArea';
 import { Formik, Form, Field } from 'formik';
-import { Annoucement } from '../types';
+import { Announcement } from '../types';
 import { RouteComponentProps } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { API } from 'aws-amplify';
@@ -22,13 +22,13 @@ const validationSchema = Yup.object().shape({
 		.required('Required')
 });
 
-const initialValues: Annoucement = {
+const initialValues: Announcement = {
 	headline: '',
 	description: '',
 	price: ''
 };
 
-const AnnoucementForm: React.FC<RouteComponentProps> = ({ history }) => (
+const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 	<>
 		<Formik
 			validateOnChange={false}
@@ -43,10 +43,10 @@ const AnnoucementForm: React.FC<RouteComponentProps> = ({ history }) => (
 						let myInit = {
 							body: values
 						};
-						await API.post('announcements', '/createAnnouncement', myInit);
+						await API.post('announcement', '/createAnnouncement', myInit);
 						actions.setSubmitting(false);
 						actions.resetForm();
-						history.push(`/annoucements`);
+						history.push(`/announcement`);
 					} catch (error) {
 						console.log(error);
 						actions.setSubmitting(false);
@@ -73,4 +73,4 @@ const AnnoucementForm: React.FC<RouteComponentProps> = ({ history }) => (
 	</>
 );
 
-export default AnnoucementForm;
+export default AnnouncementForm;
