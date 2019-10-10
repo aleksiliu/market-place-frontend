@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { space } from '../styles';
-import { API } from 'aws-amplify';
+import * as api from '../api';
 import { Link } from 'react-router-dom';
 
 const AnnouncementCard = styled.div`
@@ -48,29 +48,21 @@ type Announcements = {
 	data: Announcement[];
 };
 
-const AnnouncementList: React.FC = () => {
+const Announcements: React.FC = () => {
 	const [announcements, setAnnouncements] = useState<Service<Announcements>>({
 		status: 'loading'
 	});
 
 	useEffect(() => {
 		setAnnouncements({ status: 'loading' });
-		const fetchData = async () => {
-			try {
-				let myInit = {
-					headers: {}
-				};
-				const result: Announcement[] = await API.get(
-					'announcements',
-					'/getAnnouncements',
-					myInit
-				);
-				setAnnouncements({ status: 'success', data: result });
-			} catch (error) {
+		api
+			.getAnnouncements()
+			.then(response => {
+				setAnnouncements({ status: 'success', data: response });
+			})
+			.catch(error => {
 				setAnnouncements({ status: 'error', error });
-			}
-		};
-		fetchData();
+			});
 	}, []);
 
 	console.log(announcements);
@@ -83,7 +75,7 @@ const AnnouncementList: React.FC = () => {
 				announcements.data
 					.filter(announcement => announcement.headline)
 					.map(announcement => (
-						<Link to={`/${announcement.announcementId}`}>
+						<Link to={`/announcements/${announcement.announcementId}`}>
 							<AnnouncementCard key={announcement.announcementId}>
 								<h2>{announcement.headline}</h2>
 								<p>{announcement.description}</p>
@@ -95,4 +87,4 @@ const AnnouncementList: React.FC = () => {
 	);
 };
 
-export default AnnouncementList;
+export default Announcements;

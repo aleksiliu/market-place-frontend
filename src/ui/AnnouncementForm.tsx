@@ -46,7 +46,7 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 						await API.post('announcement', '/createAnnouncement', myInit);
 						actions.setSubmitting(false);
 						actions.resetForm();
-						history.push(`/announcement`);
+						history.push(`/announcements`);
 					} catch (error) {
 						console.log(error);
 						actions.setSubmitting(false);
