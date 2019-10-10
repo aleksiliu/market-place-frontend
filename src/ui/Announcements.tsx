@@ -3,11 +3,14 @@ import styled from 'styled-components';
 import { space } from '../styles';
 import * as api from '../api';
 import { Link } from 'react-router-dom';
+import { Announcement } from '../types';
+import { color } from '../styles';
 
 const AnnouncementCard = styled.div`
 	border-radius: ${space.xxs}px;
 	background-color: #fff;
 	padding: ${space.l}px;
+	color: ${color.gray[900]};
 `;
 
 const AnnouncementContainer = styled.div`
@@ -20,15 +23,6 @@ const AnnouncementContainer = styled.div`
 		grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
 	}
 `;
-
-type Announcement = {
-	announcementId: string;
-	createdAt: number;
-	description: string;
-	headline: string;
-	price: string;
-	storeName: string;
-};
 
 type ServiceLoading = {
 	status: 'loading';
@@ -64,8 +58,6 @@ const Announcements: React.FC = () => {
 				setAnnouncements({ status: 'error', error });
 			});
 	}, []);
-
-	console.log(announcements);
 
 	return (
 		<AnnouncementContainer>

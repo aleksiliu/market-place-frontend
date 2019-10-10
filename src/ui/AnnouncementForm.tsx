@@ -3,7 +3,6 @@ import * as Yup from 'yup';
 import TextField from '../components/TextField';
 import TextArea from '../components/TextArea';
 import { Formik, Form, Field } from 'formik';
-import { Announcement } from '../types';
 import { RouteComponentProps } from 'react-router-dom';
 import { Button } from '../components/Button';
 import { API } from 'aws-amplify';
@@ -22,7 +21,13 @@ const validationSchema = Yup.object().shape({
 		.required('Required')
 });
 
-const initialValues: Announcement = {
+type AnnouncementValues = {
+	headline: string;
+	description: string;
+	price: string;
+};
+
+const initialValues: AnnouncementValues = {
 	headline: '',
 	description: '',
 	price: ''
@@ -43,7 +48,7 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 						let myInit = {
 							body: values
 						};
-						await API.post('announcement', '/createAnnouncement', myInit);
+						await API.post('announcements', '/createAnnouncement', myInit);
 						actions.setSubmitting(false);
 						actions.resetForm();
 						history.push(`/announcements`);

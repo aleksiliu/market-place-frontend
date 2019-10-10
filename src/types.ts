@@ -1,5 +1,8 @@
 export type Announcement = {
-	headline: string;
+	announcementId: string;
+	createdAt: number;
 	description: string;
+	headline: string;
 	price: string;
+	storeName: string;
 };
