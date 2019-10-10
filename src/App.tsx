@@ -7,6 +7,7 @@ import { GlobalStyle } from './global';
 import Container from './components/Container';
 import { Route, Switch } from 'react-router-dom';
 import NotFoundPage from './ui/NotFoundPage';
+import AnnouncementPage from './ui/AnnouncementPage';
 
 const App: React.FC = () => {
 	return (
@@ -18,6 +19,7 @@ const App: React.FC = () => {
 					<Route exact path='/' component={Frontpage} />
 					<Route path='/new-annoucement' component={AnnoucementForm} />
 					<Route path='/annoucements' component={AnnoucementList} />
+					<Route path='/:announcementId' component={AnnouncementPage}></Route>
 					<Route component={NotFoundPage} />
 				</Switch>
 			</Container>

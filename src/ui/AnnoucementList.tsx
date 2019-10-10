@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import styled from 'styled-components';
 import { space } from '../styles';
 import { API } from 'aws-amplify';
+import { Link } from 'react-router-dom';
 
 const AnnoucementCard = styled.div`
 	border-radius: ${space.xxs}px;
@@ -82,11 +83,13 @@ const AnnoucementList: React.FC = () => {
 				annoucements.data
 					.filter(annoucement => annoucement.headline)
 					.map(annoucement => (
-						<AnnoucementCard key={annoucement.announcementId}>
-							<h2>{annoucement.headline}</h2>
-							<p>{annoucement.description}</p>
-							<span>{annoucement.price}€</span>
-						</AnnoucementCard>
+						<Link to={`/${annoucement.announcementId}`}>
+							<AnnoucementCard key={annoucement.announcementId}>
+								<h2>{annoucement.headline}</h2>
+								<p>{annoucement.description}</p>
+								<span>{annoucement.price}€</span>
+							</AnnoucementCard>
+						</Link>
 					))}
 		</AnnoucementContainer>
 	);
