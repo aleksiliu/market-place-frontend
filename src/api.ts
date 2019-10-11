@@ -1,10 +1,5 @@
 import { API } from 'aws-amplify';
-
-export type Announcement = {
-	headline: string;
-	description: string;
-	price: string;
-};
+import { Announcement } from './types';
 
 export const getAnnouncements = () => {
 	let myInit = {

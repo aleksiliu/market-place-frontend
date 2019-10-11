@@ -6,6 +6,7 @@ import { Formik, Form, Field } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 import { Button } from '../components/Button';
 import * as api from '../api';
+import { Announcement } from '../types';
 
 const validationSchema = Yup.object().shape({
 	headline: Yup.string()
@@ -21,13 +22,7 @@ const validationSchema = Yup.object().shape({
 		.required('Required')
 });
 
-type AnnouncementValues = {
-	headline: string;
-	description: string;
-	price: string;
-};
-
-const initialValues: AnnouncementValues = {
+const initialValues: Announcement = {
 	headline: '',
 	description: '',
 	price: ''
