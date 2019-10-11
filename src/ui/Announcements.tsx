@@ -5,6 +5,7 @@ import * as api from '../api';
 import { Link } from 'react-router-dom';
 import { Announcement } from '../types';
 import { color } from '../styles';
+import Spinner from '../components/Spinner';
 
 const AnnouncementCard = styled.div`
 	border-radius: ${space.xxs}px;
@@ -48,8 +49,6 @@ const Announcements: React.FC = () => {
 	});
 
 	useEffect(() => {
-		setAnnouncements({ status: 'loading' });
-
 		api
 			.getAnnouncements()
 			.then(response => {
@@ -63,7 +62,7 @@ const Announcements: React.FC = () => {
 	return (
 		<AnnouncementContainer>
 			{announcements.status === 'error' && <p>Network error!</p>}
-			{announcements.status === 'loading' && <p>Loading...</p>}
+			{announcements.status === 'loading' && <Spinner />}
 			{announcements.status === 'success' &&
 				announcements.data
 					.filter(announcement => announcement.headline)
