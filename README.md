@@ -6,9 +6,7 @@ Frontend for the martketplace app project.
 
 These instructions will get you a copy of the project up and running on your local machine.
 
-### Installing
-
-What things you need to install the software and how to install them
+### Instructions
 
 ```
 git clone https://github.com/aleksiliu/market-place-frontend.git
