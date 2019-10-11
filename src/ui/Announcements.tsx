@@ -49,6 +49,7 @@ const Announcements: React.FC = () => {
 
 	useEffect(() => {
 		setAnnouncements({ status: 'loading' });
+
 		api
 			.getAnnouncements()
 			.then(response => {
@@ -67,8 +68,11 @@ const Announcements: React.FC = () => {
 				announcements.data
 					.filter(announcement => announcement.headline)
 					.map(announcement => (
-						<Link to={`/announcements/${announcement.announcementId}`}>
-							<AnnouncementCard key={announcement.announcementId}>
+						<Link
+							to={`/announcements/${announcement.announcementId}`}
+							key={announcement.announcementId}
+						>
+							<AnnouncementCard>
 								<h2>{announcement.headline}</h2>
 								<p>{announcement.description}</p>
 								<span>{announcement.price}€</span>

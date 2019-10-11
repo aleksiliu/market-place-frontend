@@ -5,7 +5,7 @@ import TextArea from '../components/TextArea';
 import { Formik, Form, Field } from 'formik';
 import { RouteComponentProps } from 'react-router-dom';
 import { Button } from '../components/Button';
-import { API } from 'aws-amplify';
+import * as api from '../api';
 
 const validationSchema = Yup.object().shape({
 	headline: Yup.string()
@@ -43,21 +43,18 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 			onSubmit={(values, actions) => {
 				actions.setSubmitting(true);
 
-				const postData = async () => {
-					try {
-						let myInit = {
-							body: values
-						};
-						await API.post('announcements', '/createAnnouncement', myInit);
+				api
+					.postAnnouncement(values)
+					.then(response => {
+						console.log(response);
 						actions.setSubmitting(false);
 						actions.resetForm();
 						history.push(`/announcements`);
-					} catch (error) {
+					})
+					.catch(error => {
 						console.log(error);
 						actions.setSubmitting(false);
-					}
-				};
-				postData();
+					});
 			}}
 		>
 			{({ isSubmitting }) => (
