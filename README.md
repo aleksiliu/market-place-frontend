@@ -11,11 +11,17 @@ These instructions will get you a copy of the project up and running on your loc
 What things you need to install the software and how to install them
 
 ```
-Clone the repo
+git clone https://github.com/aleksiliu/market-place-frontend.git
 ```
 
 ```
 npm install
+```
+
+Run the app
+
+```
+npm start
 ```
 
 ## Built With
