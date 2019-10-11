@@ -1,7 +1,7 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 
-const Frontpage: React.FC = props => (
+const Frontpage: React.FC = () => (
 	<div>
 		<p>Welcome to market place!</p>
 		<ul>
