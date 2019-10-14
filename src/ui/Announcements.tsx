@@ -64,20 +64,18 @@ const Announcements: React.FC = () => {
 			{announcements.status === 'error' && <p>Network error!</p>}
 			{announcements.status === 'loading' && <Spinner />}
 			{announcements.status === 'success' &&
-				announcements.data
-					.filter(announcement => announcement.headline)
-					.map(announcement => (
-						<Link
-							to={`/announcements/${announcement.announcementId}`}
-							key={announcement.announcementId}
-						>
-							<AnnouncementCard>
-								<h2>{announcement.headline}</h2>
-								<p>{announcement.description}</p>
-								<span>{announcement.price}€</span>
-							</AnnouncementCard>
-						</Link>
-					))}
+				announcements.data.map(announcement => (
+					<Link
+						to={`/announcements/${announcement.announcementId}`}
+						key={announcement.announcementId}
+					>
+						<AnnouncementCard>
+							<h2>{announcement.headline}</h2>
+							<p>{announcement.description}</p>
+							<span>{announcement.price}€</span>
+						</AnnouncementCard>
+					</Link>
+				))}
 		</AnnouncementContainer>
 	);
 };
