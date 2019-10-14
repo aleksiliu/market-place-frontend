@@ -11,14 +11,11 @@ export default {
 };
 
 export const getAnnouncements = () => {
-	let myInit = {
-		headers: {}
-	};
-	return API.get('announcements', '/getAnnouncements', myInit);
+	return API.get('announcements', '/getAnnouncements', {});
 };
 
 export const postAnnouncement = (values: Announcement) => {
-	let myInit = {
+	const myInit = {
 		body: values
 	};
 	return API.post('announcements', '/createAnnouncement', myInit);

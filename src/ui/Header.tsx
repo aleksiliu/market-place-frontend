@@ -11,7 +11,7 @@ const HeaderContainer = styled.header`
 	margin-bottom: ${space.m}px;
 `;
 
-const Lol = styled.div`
+const HeaderWrapper = styled.div`
 	display: flex;
 	justify-content: space-between;
 	align-items: center;
@@ -21,15 +21,15 @@ const Lol = styled.div`
 const Header: React.FC = () => (
 	<HeaderContainer>
 		<Container>
-			<Lol>
+			<HeaderWrapper>
 				<Link to='/'>
 					<h1>Marketplace</h1>
 				</Link>
 				<div>
 					<a>Register</a>
-					<Button onClick={() => alert('asdd')}>Sign in</Button>
+					<Button onClick={() => alert('Feature coming soon')}>Sign in</Button>
 				</div>
-			</Lol>
+			</HeaderWrapper>
 		</Container>
 	</HeaderContainer>
 );

@@ -25,7 +25,7 @@ const validationSchema = Yup.object().shape({
 const initialValues: Announcement = {
 	headline: '',
 	description: '',
-	price: ''
+	price: 0
 };
 
 const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
@@ -41,13 +41,11 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 				api
 					.postAnnouncement(values)
 					.then(response => {
-						console.log(response);
 						actions.setSubmitting(false);
 						actions.resetForm();
 						history.push(`/announcements`);
 					})
 					.catch(error => {
-						console.log(error);
 						actions.setSubmitting(false);
 					});
 			}}
@@ -62,7 +60,7 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 					></Field>
 					<Field name='price' euro={true} label='Price' component={TextField} />
 					<Button type='submit' disabled={isSubmitting}>
-						Send
+						{isSubmitting ? <span>Loading</span> : <span>Send</span>}
 					</Button>
 				</Form>
 			)}

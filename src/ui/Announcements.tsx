@@ -30,7 +30,7 @@ type ServiceLoading = {
 };
 type ServiceLoaded<T> = {
 	status: 'success';
-	data: Announcement[];
+	data: T;
 };
 type ServiceError = {
 	status: 'error';
@@ -39,12 +39,8 @@ type ServiceError = {
 
 type Service<T> = ServiceLoading | ServiceLoaded<T> | ServiceError;
 
-type Announcements = {
-	data: Announcement[];
-};
-
 const Announcements: React.FC = () => {
-	const [announcements, setAnnouncements] = useState<Service<Announcements>>({
+	const [announcements, setAnnouncements] = useState<Service<Announcement[]>>({
 		status: 'loading'
 	});
 
