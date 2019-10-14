@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldProps } from 'formik';
+import { FieldProps, getIn } from 'formik';
 import { color } from '../styles';
 import styled from 'styled-components';
 
@@ -28,23 +28,19 @@ type OwnProps = {
 
 type TextFieldValueProps = FieldProps & OwnProps;
 
-const TextArea: React.FC<TextFieldValueProps> = ({
-	field,
-	label,
-	form: { errors }
-}) => (
-	<div>
-		<Label htmlFor={field.name}> {label}</Label>
-		<FormInputTextArea
-			style={
-				errors[field.name] ? { borderColor: 'red' } : { borderColor: '#eee' }
-			}
-			{...field}
-		/>
-		{[field.name] && errors[field.name] && (
-			<InputError>{errors[field.name]}</InputError>
-		)}
-	</div>
-);
+const TextArea: React.FC<TextFieldValueProps> = ({ field, label, form }) => {
+	const error =
+		getIn(form.touched, field.name) && getIn(form.errors, field.name);
+	return (
+		<div>
+			<Label htmlFor={field.name}> {label}</Label>
+			<FormInputTextArea
+				style={error ? { borderColor: 'red' } : { borderColor: '#eee' }}
+				{...field}
+			/>
+			{error && <InputError>{error}</InputError>}
+		</div>
+	);
+};
 
 export default TextArea;

@@ -18,7 +18,6 @@ const validationSchema = Yup.object().shape({
 		.required('Required'),
 	price: Yup.number()
 		.typeError('Price not valid')
-		.positive()
 		.required('Required')
 });
 

@@ -1,5 +1,5 @@
 import React from 'react';
-import { FieldProps } from 'formik';
+import { FieldProps, getIn } from 'formik';
 import styled from 'styled-components';
 import { color } from '../styles';
 
@@ -32,23 +32,23 @@ const TextField: React.FC<TextFieldValueProps> = ({
 	field,
 	label,
 	type = 'text',
-	form: { errors },
+	form,
 	euro
-}) => (
-	<div>
-		<Label htmlFor={field.name}>{label}</Label>
-		<FormInput
-			style={
-				errors[field.name] ? { borderColor: 'red' } : { borderColor: '#eee' }
-			}
-			type={type}
-			{...field}
-		/>
-		{euro ? <span>€</span> : null}
-		{[field.name] && errors[field.name] && (
-			<InputError>{errors[field.name]}</InputError>
-		)}
-	</div>
-);
+}) => {
+	const error =
+		getIn(form.touched, field.name) && getIn(form.errors, field.name);
+	return (
+		<div>
+			<Label htmlFor={field.name}>{label}</Label>
+			<FormInput
+				style={error ? { borderColor: 'red' } : { borderColor: '#eee' }}
+				type={type}
+				{...field}
+			/>
+			{euro ? <span>€</span> : null}
+			{error && <InputError>{error}</InputError>}
+		</div>
+	);
+};
 
 export default TextField;
