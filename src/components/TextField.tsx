@@ -41,7 +41,11 @@ const TextField: React.FC<TextFieldValueProps> = ({
 		<div>
 			<Label htmlFor={field.name}>{label}</Label>
 			<FormInput
-				style={error ? { borderColor: 'red' } : { borderColor: '#eee' }}
+				style={
+					error
+						? { borderColor: `${color.accent.error}` }
+						: { borderColor: `${color.gray[400]}` }
+				}
 				type={type}
 				{...field}
 			/>
