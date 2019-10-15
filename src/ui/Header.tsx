@@ -4,6 +4,8 @@ import Container from '../components/Container';
 import { Button } from '../components/Button';
 import { Link } from 'react-router-dom';
 import { space } from '../styles';
+import Modal from '../components/Modal';
+import { useModal } from '../utils';
 
 const HeaderContainer = styled.header`
 	background-color: white;
@@ -18,20 +20,27 @@ const HeaderWrapper = styled.div`
 	flex-wrap: wrap;
 `;
 
-const Header: React.FC = () => (
-	<HeaderContainer>
-		<Container>
-			<HeaderWrapper>
-				<Link to='/'>
-					<h1>Marketplace</h1>
-				</Link>
-				<div>
-					<a>Register</a>
-					<Button onClick={() => alert('Feature coming soon')}>Sign in</Button>
-				</div>
-			</HeaderWrapper>
-		</Container>
-	</HeaderContainer>
-);
+const Header: React.FC = () => {
+	const { isShowing, toggle } = useModal();
+
+	return (
+		<HeaderContainer>
+			<Container>
+				<HeaderWrapper>
+					<Link to='/'>
+						<h1>Marketplace</h1>
+					</Link>
+					<div>
+						<a>Register</a>
+						<Button onClick={toggle}>Sign in</Button>
+					</div>
+					<Modal isShowing={isShowing} hide={toggle}>
+						There is no spoon...
+					</Modal>
+				</HeaderWrapper>
+			</Container>
+		</HeaderContainer>
+	);
+};
 
 export default Header;
