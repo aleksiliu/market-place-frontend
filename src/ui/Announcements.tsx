@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import { space } from '../styles';
 import * as api from '../api';
 import { Link } from 'react-router-dom';
-import { Announcement } from '../types';
+import { Announcement, Status } from '../types';
 import { color } from '../styles';
 import Spinner from '../components/Spinner';
 
@@ -25,22 +25,8 @@ const AnnouncementContainer = styled.div`
 	}
 `;
 
-type ServiceLoading = {
-	status: 'loading';
-};
-type ServiceLoaded<T> = {
-	status: 'success';
-	data: T;
-};
-type ServiceError = {
-	status: 'error';
-	error: Error;
-};
-
-type Service<T> = ServiceLoading | ServiceLoaded<T> | ServiceError;
-
 const Announcements: React.FC = () => {
-	const [announcements, setAnnouncements] = useState<Service<Announcement[]>>({
+	const [announcements, setAnnouncements] = useState<Status<Announcement[]>>({
 		status: 'loading'
 	});
 
