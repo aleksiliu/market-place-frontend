@@ -31,11 +31,11 @@ const Header: React.FC = () => {
 						<h1>Marketplace</h1>
 					</Link>
 					<div>
-						<a>Register</a>
+						<span>Register</span>
 						<Button onClick={toggle}>Sign in</Button>
 					</div>
 					<Modal isShowing={isShowing} hide={toggle}>
-						There is no spoon...
+						Sign in...
 					</Modal>
 				</HeaderWrapper>
 			</Container>
