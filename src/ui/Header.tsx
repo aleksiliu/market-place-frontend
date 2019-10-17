@@ -33,7 +33,7 @@ const validationSchema = Yup.object().shape({
 });
 
 const Header: React.FC<RouteComponentProps> = ({ history }) => {
-	const { isShowing, toggle } = useModal();
+	const { isShowing, toggleModal } = useModal();
 
 	return (
 		<HeaderContainer>
@@ -44,9 +44,9 @@ const Header: React.FC<RouteComponentProps> = ({ history }) => {
 					</Link>
 					<div>
 						<span>Register</span>
-						<Button onClick={toggle}>Sign in</Button>
+						<Button onClick={toggleModal}>Sign in</Button>
 					</div>
-					<Modal isShowing={isShowing} hide={toggle}>
+					<Modal isShowing={isShowing} hide={toggleModal}>
 						<p>Sign in...</p>
 						<Formik
 							validateOnChange={false}
@@ -59,14 +59,19 @@ const Header: React.FC<RouteComponentProps> = ({ history }) => {
 							onSubmit={(values, actions) => {
 								actions.setSubmitting(true);
 								alert(JSON.stringify(values));
-								toggle();
+								toggleModal();
 								history.push(`/new-announcement`);
 								actions.setSubmitting(false);
 							}}
 						>
 							{({ isSubmitting }) => (
 								<Form>
-									<Field name='email' label='email' component={TextField} />
+									<Field
+										type='email'
+										name='email'
+										label='email'
+										component={TextField}
+									/>
 									<Field
 										type='password'
 										name='password'
