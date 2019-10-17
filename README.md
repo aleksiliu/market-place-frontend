@@ -1,4 +1,4 @@
-# 🏦Marketplace🏦
+# 🏦 Marketplace 🏦
 
 Frontend for the martketplace app project.
 
