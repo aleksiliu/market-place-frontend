@@ -5,6 +5,7 @@ export type Announcement = {
 	announcementId?: string;
 	createdAt?: number;
 	storeName?: string;
+	file?: any;
 };
 
 type StatusLoading = {

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Storage } from 'aws-amplify';
 import * as Yup from 'yup';
 import TextField from '../components/TextField';
 import TextArea from '../components/TextArea';
@@ -18,13 +19,15 @@ const validationSchema = Yup.object().shape({
 		.required('Required'),
 	price: Yup.number()
 		.typeError('Price not valid')
-		.required('Required')
+		.required('Required'),
+	file: Yup.mixed()
 });
 
 const initialValues: Announcement = {
 	headline: '',
 	description: '',
-	price: 0
+	price: 0,
+	file: null
 };
 
 const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
@@ -37,19 +40,30 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 			onSubmit={(values, actions) => {
 				actions.setSubmitting(true);
 
-				api
-					.postAnnouncement(values)
-					.then(response => {
-						actions.setSubmitting(false);
-						actions.resetForm();
-						history.push(`/announcements`);
-					})
-					.catch(error => {
-						actions.setSubmitting(false);
-					});
+				console.log({
+					fileName: values.file.name,
+					type: values.file.type,
+					size: `${values.file.size} bytes`
+				});
+
+				Storage.put(values.file.name, values.file)
+					.then(result => console.log(result))
+					.catch(err => console.log(`error: ${err}`));
+
+				// api
+				// 	.postAnnouncement(values)
+				// 	.then(response => {
+				// 		actions.setSubmitting(false);
+				// 		actions.resetForm();
+				// 		history.push(`/announcements`);
+				// 	})
+				// 	.catch(error => {
+				// 		actions.setSubmitting(false);
+				// 	});
+				actions.setSubmitting(false);
 			}}
 		>
-			{({ isSubmitting }) => (
+			{({ isSubmitting, setFieldValue }) => (
 				<Form>
 					<Field name='headline' label='Headline' component={TextField} />
 					<Field
@@ -58,6 +72,14 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 						component={TextArea}
 					></Field>
 					<Field name='price' euro={true} label='Price' component={TextField} />
+					<input
+						id='file'
+						name='file'
+						type='file'
+						onChange={(event: any) => {
+							setFieldValue('file', event.currentTarget.files[0]);
+						}}
+					/>
 					<Button type='submit' disabled={isSubmitting}>
 						{isSubmitting ? <span>Loading</span> : <span>Send</span>}
 					</Button>

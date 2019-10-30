@@ -2,7 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import App from './App';
 import Amplify from 'aws-amplify';
-import config from './api';
+import config from './config';
 import { BrowserRouter as Router } from 'react-router-dom';
 
 Amplify.configure({
@@ -14,6 +14,11 @@ Amplify.configure({
 				region: config.apiGateway.REGION
 			}
 		]
+	},
+	Storage: {
+		region: config.apiGateway.REGION,
+		bucket: config.s3.BUCKET,
+		identityPoolId: config.cognito.IDENTITY_POOL_ID
 	}
 });
 
