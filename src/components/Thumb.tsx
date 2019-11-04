@@ -6,8 +6,21 @@ type OwnProps = {
 	file: any;
 };
 
+type StatusLoading = {
+	status: 'loading';
+};
+
+type StatusLoaded = {
+	status: 'success';
+	thumb: any;
+};
+
+type Status = StatusLoading | StatusLoaded;
+
 const Thumb: React.FC<OwnProps> = ({ file }) => {
-	const [thumb, setThumb] = useState<any>({ loading: false, thumb: undefined });
+	const [thumb, setThumb] = useState<Status>({
+		status: 'loading'
+	});
 
 	useEffect(() => {
 		if (!file) {
@@ -16,7 +29,7 @@ const Thumb: React.FC<OwnProps> = ({ file }) => {
 		let reader = new FileReader();
 
 		reader.onloadend = () => {
-			setThumb({ loading: false, thumb: reader.result });
+			setThumb({ status: 'success', thumb: reader.result });
 		};
 		reader.readAsDataURL(file);
 	}, [file]);
@@ -24,7 +37,7 @@ const Thumb: React.FC<OwnProps> = ({ file }) => {
 	if (!file) {
 		return null;
 	}
-	if (thumb.loading === 'loading') {
+	if (thumb.status === 'loading') {
 		return <Spinner />;
 	} else {
 		return <img src={thumb.thumb} width='200' height='200' />;

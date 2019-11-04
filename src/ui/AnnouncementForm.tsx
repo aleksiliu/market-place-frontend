@@ -73,6 +73,7 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 						component={TextArea}
 					></Field>
 					<Field name='price' euro={true} label='Price' component={TextField} />
+
 					<input
 						name='file'
 						type='file'
@@ -82,6 +83,7 @@ const AnnouncementForm: React.FC<RouteComponentProps> = ({ history }) => (
 							}
 						}}
 					/>
+
 					<Thumb file={values.file}></Thumb>
 					<Button type='submit' disabled={isSubmitting}>
 						{isSubmitting ? <span>Loading</span> : <span>Send</span>}
